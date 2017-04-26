@@ -1,9 +1,6 @@
 package com.tzg.service.support.proto;
 
 import com.tzg.service.support.json.JsonResp;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +19,6 @@ import java.util.Map;
  * @author 曾林 2016/12/7.
  */
 public abstract class ProtoController< T extends ProtoBean > {
-
-    private final static Logger logger = LoggerFactory.getLogger( ProtoController.class );
 
     protected abstract ProtoService getService();
 
@@ -135,6 +130,7 @@ public abstract class ProtoController< T extends ProtoBean > {
         return getSuccessJsonResp();
     }
 
+    @SuppressWarnings( "unchecked" )
     @ResponseBody
     @RequestMapping( "/proto/deleteList" )
     public JsonResp deleteList( String ids ) throws Exception {
