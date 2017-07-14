@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public abstract class ProtoController< T extends ProtoBean > {
 
-    protected abstract ProtoService getService();
+    protected abstract ProtoProvider getProvider();
 
     /**
      * 将实体对象数据结构转变成map数据结构。为mybatis配置文件做请求参数准备。例如：
@@ -119,14 +119,14 @@ public abstract class ProtoController< T extends ProtoBean > {
     @ResponseBody
     @RequestMapping( "/proto/post" )
     public JsonResp post( T bean ) throws Exception {
-        getService().insert( bean );
+        getProvider().insert( bean );
         return getSuccessJsonResp( bean );
     }
 
     @ResponseBody
     @RequestMapping( "/proto/delete" )
     public JsonResp delete( Integer id ) throws Exception {
-        getService().delete( id );
+        getProvider().delete( id );
         return getSuccessJsonResp();
     }
 
@@ -138,7 +138,7 @@ public abstract class ProtoController< T extends ProtoBean > {
         Map< String, Object > map = new HashMap<>();
         map.put( "ids", Arrays.asList( ids.split( "-" ) ) );
 
-        getService().deleteList( map );
+        getProvider().deleteList( map );
         return getSuccessJsonResp();
 
     }
@@ -147,7 +147,7 @@ public abstract class ProtoController< T extends ProtoBean > {
     @ResponseBody
     @RequestMapping( "/proto/put" )
     public JsonResp put( T bean ) throws Exception {
-        getService().update( bean );
+        getProvider().update( bean );
         return getSuccessJsonResp();
     }
 
@@ -155,7 +155,7 @@ public abstract class ProtoController< T extends ProtoBean > {
     @ResponseBody
     @RequestMapping( "/proto/get" )
     public JsonResp get( Integer id ) throws Exception {
-        T t = ( T ) getService().selectById( id );
+        T t = ( T ) getProvider().selectById( id );
         return getSuccessJsonResp( t, 1 );
     }
 
@@ -167,8 +167,8 @@ public abstract class ProtoController< T extends ProtoBean > {
 
         Map< String, Object > map = getPagingQryMap( bean, pageIndex, pageSize );
 
-        Integer   count = getService().selectCount( map );
-        List< T > list  = getService().selectList( map );
+        Integer   count = getProvider().selectCount( map );
+        List< T > list  = getProvider().selectList( map );
 
         return getSuccessJsonResp( list, count );
 

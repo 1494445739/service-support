@@ -17,13 +17,14 @@
     <parent>
         <groupId>com.tzg</groupId>
         <artifactId>framework-core</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.1</version>
     </parent>
 
     <!-- ====================================================== -->
     <!--                         POM GAV                        -->
     <!-- ====================================================== -->
     <artifactId>service-support</artifactId>
+    <version>1.0.3</version>
 
     <!-- ====================================================== -->
     <!--                       项目名和组织                      -->
