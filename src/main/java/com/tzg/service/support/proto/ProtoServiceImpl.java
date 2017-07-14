@@ -62,7 +62,7 @@ public abstract class ProtoServiceImpl< T extends ProtoBean > implements ProtoSe
      */
     @SuppressWarnings( "unchecked" )
     @Override
-    public T selectById( Object id ) throws Exception {
+    public T selectById( Integer id ) throws Exception {
         return ( T ) getMapper().selectById( id );
     }
 
