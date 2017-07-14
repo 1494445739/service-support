@@ -1,6 +1,5 @@
 package com.tzg.service.support.proto;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
@@ -62,7 +61,7 @@ public abstract class ProtoServiceImpl< T extends ProtoBean > implements ProtoSe
      */
     @SuppressWarnings( "unchecked" )
     @Override
-    public T selectById( Integer id ) throws Exception {
+    public T selectById( Object id ) throws Exception {
         return ( T ) getMapper().selectById( id );
     }
 
