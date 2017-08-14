@@ -3,42 +3,62 @@ package com.tzg.service.support.proto;
 import java.util.List;
 import java.util.Map;
 
-public abstract class ProtoProvider< T extends ProtoBean > {
+public interface ProtoProvider< T extends ProtoBean > {
 
-    protected abstract ProtoService getService();
+    /**
+     * 记录新增
+     *
+     * @param bean 需持久化的数据对象
+     * @throws Exception 数据库访问异常
+     */
+    void insert( T bean ) throws Exception;
 
-    @SuppressWarnings( "unchecked" )
-    public void insert( T bean ) throws Exception {
-        getService().insert( bean );
-    }
+    /**
+     * 记录删除
+     *
+     * @param id 要删除记录的主键
+     * @throws Exception 数据库访问异常
+     */
+    void delete( Integer id ) throws Exception;
 
-    public void delete( Integer id ) throws Exception {
-        getService().delete( id );
-    }
+    /**
+     * 记录批量删除
+     *
+     * @param map 查询条件映射
+     * @throws Exception 数据库访问异常
+     */
+    void deleteList( Map< String, Object > map ) throws Exception;
 
-    @SuppressWarnings( "unchecked" )
-    public void deleteList( Map< String, Object > map ) throws Exception {
-        getService().deleteList( map );
-    }
+    /**
+     * 记录更新
+     *
+     * @param bean 需持久化的数据对象
+     * @throws Exception 数据库访问异常
+     */
+    void update( T bean ) throws Exception;
 
-    @SuppressWarnings( "unchecked" )
-    public void update( T bean ) throws Exception {
-        getService().update( bean );
-    }
+    /**
+     * 根据主键查询记录
+     *
+     * @param id 主键
+     * @throws Exception 数据库访问异常
+     */
+    T selectById( Object id ) throws Exception;
 
-    @SuppressWarnings( "unchecked" )
-    public T selectById( Integer id ) throws Exception {
-        return ( T ) getService().selectById( id );
-    }
+    /**
+     * 根据查询条件返回查询结果记录数。一般用于分页查询。
+     *
+     * @param map 查询条件映射
+     * @throws Exception 数据库访问异常
+     */
+    Integer selectCount( Map< String, Object > map ) throws Exception;
 
-    @SuppressWarnings( "unchecked" )
-    public Integer selectCount( Map< String, Object > map ) throws Exception {
-        return getService().selectCount( map );
-    }
-
-    @SuppressWarnings( "unchecked" )
-    public List< T > selectList( Map< String, Object > map ) throws Exception {
-        return getService().selectList( map );
-    }
+    /**
+     * 根据查询条件返回查询结果。
+     *
+     * @param map 查询条件映射
+     * @throws Exception 数据库访问异常
+     */
+    List< T > selectList( Map< String, Object > map ) throws Exception;
 
 }
