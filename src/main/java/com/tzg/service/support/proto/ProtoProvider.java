@@ -43,7 +43,7 @@ public interface ProtoProvider< T extends ProtoBean > {
      * @param id 主键
      * @throws Exception 数据库访问异常
      */
-    T selectById( Object id ) throws Exception;
+    T selectById( Integer id ) throws Exception;
 
     /**
      * 根据查询条件返回查询结果记录数。一般用于分页查询。
