@@ -1,5 +1,7 @@
 package com.tzg.service.support.proto;
 
+import com.tzg.service.support.result.Result;
+
 import java.util.List;
 import java.util.Map;
 
@@ -86,6 +88,18 @@ public abstract class ProtoServiceImpl< T extends ProtoBean > implements ProtoSe
     @Override
     public List< T > selectList( Map< String, Object > map ) throws Exception {
         return getMapper().selectList( map );
+    }
+
+    public Result getFailResult( String errMsg ) {
+        Result result = new Result();
+        result.setStatus( Result.ERROR );
+        result.setData( errMsg );
+
+        return result;
+    }
+
+    public Result getSuccResult() {
+        return new Result();
     }
 
 }
