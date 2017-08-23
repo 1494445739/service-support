@@ -1,6 +1,8 @@
 package com.tzg.service.support.result;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable {
 
     /** 响应状态位 */
     public final static String OK    = "ok";
