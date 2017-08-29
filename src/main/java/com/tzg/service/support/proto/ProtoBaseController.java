@@ -1,15 +1,27 @@
 package com.tzg.service.support.proto;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.tzg.service.support.json.JsonResp;
+import com.tzg.tool.support.io.IOUtil;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class ProtoBaseController< T extends ProtoBean > {
+
+    protected JSONObject getParamMapFromRequest( HttpServletRequest request ) throws IOException {
+        InputStream is          = request.getInputStream();
+        String      paramString = IOUtil.convertStream2String( is );
+        return JSON.parseObject( paramString );
+    }
 
     /**
      * 将实体对象数据结构转变成map数据结构。为mybatis配置文件做请求参数准备。例如：
